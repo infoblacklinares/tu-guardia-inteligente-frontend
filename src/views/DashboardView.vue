@@ -9,6 +9,9 @@ const loading = ref(true)
 const error = ref('')
 const selectedArea = ref<'home' | 'business' | 'community'>('home')
 const acknowledged = ref<string[]>([])
+const resolved = ref<string[]>([])
+const selectedEvent = ref<SecurityEvent | null>(null)
+const shareNotice = ref(false)
 const mobileSection = ref<'home' | 'alerts' | 'history' | 'family'>('home')
 
 onMounted(async () => {
@@ -20,8 +23,10 @@ onMounted(async () => {
 const activeEvents = computed(() => snapshot.value?.events.filter(e => effectiveStatus(e) !== 'resolved') ?? [])
 const newEvents = computed(() => activeEvents.value.filter(e => effectiveStatus(e) === 'new'))
 const offlineSensors = computed(() => snapshot.value?.sensors.filter(s => s.status === 'offline').length ?? 0)
-function effectiveStatus(event: SecurityEvent): EventStatus { return acknowledged.value.includes(event.id) && event.status === 'new' ? 'acknowledged' : event.status }
+function effectiveStatus(event: SecurityEvent): EventStatus { if (resolved.value.includes(event.id)) return 'resolved'; return acknowledged.value.includes(event.id) && event.status === 'new' ? 'acknowledged' : event.status }
 function acknowledge(event: SecurityEvent) { if (!acknowledged.value.includes(event.id)) acknowledged.value.push(event.id) }
+function resolveEvent(event: SecurityEvent) { if (!resolved.value.includes(event.id)) resolved.value.push(event.id); selectedEvent.value = null }
+function shareDemo() { shareNotice.value = true }
 function statusLabel(status: string) { return ({ armed:'Activo', disarmed:'Desactivado', offline:'Sin conexión', unknown:'Desconocido', new:'Nueva', acknowledged:'Recibida', resolved:'Resuelta' } as Record<string,string>)[status] ?? status }
 function timeLabel(value: string) { return new Intl.DateTimeFormat('es-CL',{hour:'2-digit',minute:'2-digit'}).format(new Date(value)) }
 function selectArea(area: 'home' | 'business' | 'community') { selectedArea.value = area; mobileSection.value = 'home' }
@@ -70,6 +75,7 @@ function selectArea(area: 'home' | 'business' | 'community') { selectedArea.valu
           <div class="smart-event-body">
             <div class="smart-event-heading"><div><span class="event-kicker">{{effectiveStatus(event)==='new'?'REQUIERE ATENCIÓN':'ESTADO DEL EVENTO'}}</span><h3>{{event.title}}</h3></div><time>{{timeLabel(event.occurredAt)}}</time></div>
             <p>{{event.description}}</p>
+            <button class="secondary-action" @click="selectedEvent=event">Ver detalles del evento</button>
             <div class="event-meta"><span class="status-chip" :class="effectiveStatus(event)">{{statusLabel(effectiveStatus(event))}}</span><span class="clip-label muted">{{event.clipAvailable ? 'Referencia de clip demo' : 'Sin vídeo asociado'}}</span></div>
             <button v-if="event.status==='new' && !acknowledged.includes(event.id)" class="primary-action" @click="acknowledge(event)"><CheckCircle2 :size="17" /> Marcar como recibida <ChevronRight :size="18" /></button>
             <div v-else class="acknowledged-note"><CheckCircle2 :size="16" /> Evento recibido en esta sesión de demostración</div>
@@ -93,6 +99,23 @@ function selectArea(area: 'home' | 'business' | 'community') { selectedArea.valu
       <p class="disclaimer">Prototipo con datos ficticios. No ofrece monitoreo 24/7, no está conectado a dispositivos reales y no reemplaza servicios de emergencia.</p>
     </template>
   </main>
+
+  <Transition name="modal-fade">
+    <div v-if="selectedEvent" class="event-modal-backdrop" @click.self="selectedEvent=null">
+      <section class="event-modal" role="dialog" aria-modal="true" aria-labelledby="event-modal-title">
+        <div class="event-modal-header"><span class="event-modal-icon"><CircleAlert :size="23" /></span><button class="modal-close" aria-label="Cerrar detalles" @click="selectedEvent=null">×</button></div>
+        <span class="event-kicker">DETALLE DEL EVENTO · DEMOSTRACIÓN</span>
+        <h2 id="event-modal-title">{{selectedEvent.title}}</h2>
+        <p class="modal-description">{{selectedEvent.description}}</p>
+        <div class="event-detail-list"><div><span>Hora del evento</span><strong>{{timeLabel(selectedEvent.occurredAt)}}</strong></div><div><span>Dispositivo</span><strong>{{snapshot?.sensors.find(s=>s.id===selectedEvent.deviceId)?.name ?? 'Dispositivo de ejemplo'}}</strong></div><div><span>Estado</span><strong>{{statusLabel(effectiveStatus(selectedEvent))}}</strong></div><div><span>Video</span><strong>{{selectedEvent.clipAvailable?'Referencia de clip demo':'No hay video asociado'}}</strong></div></div>
+        <div class="modal-info-note"><ShieldCheck :size="18" /><p>Evento ficticio. Confirmar recepción no significa que la situación esté resuelta ni que se haya enviado ayuda real.</p></div>
+        <h3 class="share-title">Coordinar apoyo</h3><p class="share-copy">En el servicio final podrás avisar a personas autorizadas. Prueba el flujo visual; no se enviará ninguna notificación.</p>
+        <div class="share-options"><button @click="shareDemo"><Users :size="17" /> Familia</button><button @click="shareDemo"><House :size="17" /> Grupo vecinal</button><button @click="shareDemo"><Store :size="17" /> Negocio</button></div>
+        <div v-if="shareNotice" class="share-confirmation"><CheckCircle2 :size="17" /> Acción simulada. No se ha enviado una notificación real.</div>
+        <div class="modal-footer"><button class="secondary-action" @click="selectedEvent=null">Cerrar</button><button v-if="effectiveStatus(selectedEvent)!=='resolved'" class="primary-action" @click="resolveEvent(selectedEvent)"><CheckCircle2 :size="17" /> Marcar como resuelta</button></div>
+      </section>
+    </div>
+  </Transition>
   <nav class="mobile-nav" aria-label="Navegación móvil">
     <button :class="{active:mobileSection==='home'}" @click="mobileSection='home'"><House :size="21" /><span>Inicio</span></button>
     <button :class="{active:mobileSection==='alerts'}" @click="mobileSection='alerts'"><Bell :size="21" /><span>Alertas</span><i v-if="newEvents.length" class="nav-alert-dot"></i></button>
