@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /app
+
+# El sitemap se publicará cuando se confirme el dominio canónico del producto.
