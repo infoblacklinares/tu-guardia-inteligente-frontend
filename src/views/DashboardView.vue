@@ -113,7 +113,7 @@ function selectArea(area: 'home' | 'business' | 'community') { selectedArea.valu
         <h3 class="share-title">Coordinar apoyo</h3><p class="share-copy">En el servicio final podrás avisar a personas autorizadas. Prueba el flujo visual; no se enviará ninguna notificación.</p>
         <div class="share-options"><button @click="shareDemo"><Users :size="17" /> Familia</button><button @click="shareDemo"><House :size="17" /> Grupo vecinal</button><button @click="shareDemo"><Store :size="17" /> Negocio</button></div>
         <div v-if="shareNotice" class="share-confirmation"><CheckCircle2 :size="17" /> Acción simulada. No se ha enviado una notificación real.</div>
-        <div class="modal-footer"><button class="secondary-action" @click="selectedEvent=null">Cerrar</button><button v-if="effectiveStatus(selectedEvent)==='new'" class="primary-action" @click="acknowledge(selectedEvent)"><CheckCircle2 :size="17" /> Ya estoy revisando</button><button v-if="effectiveStatus(selectedEvent)!=='resolved'" class="primary-action" @click="resolveEvent(selectedEvent)"><CheckCircle2 :size="17" /> Marcar como resuelta</button></div>
+        <div class="modal-footer"><button class="secondary-action" @click="selectedEvent=null">Cerrar</button><button v-if="effectiveStatus(selectedEvent)==='new'" class="primary-action" @click="acknowledge(selectedEvent)"><CheckCircle2 :size="17" /> Ya estoy revisando</button><button v-if="effectiveStatus(selectedEvent)==='acknowledged'" class="primary-action" @click="resolveEvent(selectedEvent)"><CheckCircle2 :size="17" /> Marcar como resuelta</button></div>
       </section>
     </div>
   </Transition>
