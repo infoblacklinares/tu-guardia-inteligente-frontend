@@ -31,3 +31,24 @@ Crear repositorio GitHub privado `tu-guardia-inteligente-frontend`, subir el sca
 **Causa:** no confirmada; no atribuirlo a un paquete específico sin logs adicionales.  
 **Impacto:** no se pudo ejecutar `npm run type-check` ni `npm run build`; el scaffold queda sin verificación de compilación.  
 **Siguiente paso:** repetir instalación en un entorno con acceso estable a npm, guardar salida completa y registrar cualquier error concreto antes de corregir.
+
+
+## TGI-FE-003 — 21-10-2026 — Corrección de alias y rediseño móvil
+**Solicitud:** priorizar la versión móvil y acercar el panel a la referencia visual del hogar inteligente.
+
+**Resultados confirmados por el usuario en su equipo local (antes del rediseño v0.3):**
+- `npm install` finalizó e instaló 142 paquetes; npm informó 7 vulnerabilidades (2 moderadas y 5 altas), avisos de tarballs y un aviso de aprobación de script para `esbuild`.
+- `npm run build` falló inicialmente porque Vite no resolvía `@/views/DashboardView.vue`.
+- Se corrigió `vite.config.ts` para declarar el alias `@`.
+- El usuario confirmó después que `npm run build` terminó correctamente y mostró la carpeta `dist` (1.588 módulos transformados, 9,90 s).
+- El usuario mostró la interfaz funcionando en `localhost:5173`.
+
+**Cambios enviados directamente a GitHub por el asistente:**
+- `src/views/DashboardView.vue` — rediseño del inicio con prioridad móvil, saludo, selector de hogar, estado de demostración, cámara ilustrativa, alerta, familia, sensores y navegación inferior.
+- `src/styles/main.css` — estilos responsive mobile-first basados en la referencia visual.
+- `vite.config.ts` — alias `@` explícito para Vite.
+- Commits: `db6d110` (vista), `34cf592` (estilos), `66ff498` (alias Vite).
+
+**Estado real tras estos cambios:** los archivos están enviados a la rama `main` de GitHub. Todavía no se ha ejecutado una compilación después de integrar el nuevo diseño; no afirmar que el rediseño v0.3 compila hasta que el usuario lo pruebe localmente. La escena de cámara es una ilustración CSS y está rotulada como demostración; no representa una cámara conectada. No hay backend ni dispositivos reales conectados.
+
+**Siguiente paso:** en el equipo local, ejecutar `git pull origin main` y `npm run build`. Corregir cualquier error antes de desplegar. Revisar las 7 vulnerabilidades por separado, sin usar `npm audit fix --force` sin analizar el impacto.
