@@ -1,0 +1,18 @@
+<script setup lang="ts">
+import { ArrowRight, CheckCircle2, House, Store, Users, ShieldCheck } from 'lucide-vue-next'
+import { RouterLink } from 'vue-router'
+const plans = [
+ {name:'Guardia Hogar',audience:'Para una persona o familia',icon:House,description:'Organiza los eventos de tu hogar y ten claro qué necesita atención.',features:['Resumen de eventos y dispositivos compatibles','Historial de eventos','Confirmación de recepción','Espacio privado'],note:'Cantidad de dispositivos y usuarios por definir.'},
+ {name:'Guardia Familia',audience:'Para coordinar a personas de confianza',icon:Users,description:'Un paso más para compartir alertas con familiares autorizados.',features:['Funciones de Guardia Hogar','Personas autorizadas','Coordinación de alertas compartidas','Registro de confirmaciones'],note:'Reglas de escalamiento y límites por definir.',featured:true},
+ {name:'Guardia Negocio',audience:'Para pequeños comercios',icon:Store,description:'Eventos y responsables organizados para la operación diaria.',features:['Funciones principales de alertas','Estado de dispositivos compatibles','Historial operativo','Posible coordinación con negocios participantes'],note:'Compatibilidad, usuarios y soporte por validar.'},
+]
+</script>
+<template>
+<main class="public-site">
+ <header class="public-header"><RouterLink to="/" class="public-brand"><span class="public-brand-mark"><ShieldCheck :size="22" /></span><span>Tu Guardia <b>Inteligente</b></span></RouterLink><nav class="public-nav"><RouterLink to="/como-funciona">Cómo funciona</RouterLink><RouterLink to="/planes" class="nav-current">Planes</RouterLink><RouterLink to="/app" class="public-nav-cta">Ver demostración <ArrowRight :size="15" /></RouterLink></nav></header>
+ <section class="plans-hero"><span class="public-eyebrow">OPCIONES PARA CADA NECESIDAD</span><h1>Un guardia inteligente para tu forma de vivir y trabajar.</h1><p>Estamos definiendo los planes junto con la compatibilidad técnica y los costos reales. Estas opciones muestran cómo se podría organizar el servicio; todavía no son tarifas ni ofertas de contratación.</p></section>
+ <section class="plan-grid"><article v-for="plan in plans" :key="plan.name" class="plan-card" :class="{featured:plan.featured}"><div v-if="plan.featured" class="plan-recommended">ENFOQUE EN COORDINACIÓN</div><div class="plan-icon"><component :is="plan.icon" :size="23" /></div><h2>{{plan.name}}</h2><span class="plan-audience">{{plan.audience}}</span><p>{{plan.description}}</p><ul><li v-for="feature in plan.features" :key="feature"><CheckCircle2 :size="16" />{{feature}}</li></ul><div class="plan-note">{{plan.note}}</div><RouterLink to="/app" class="plan-link">Explorar demostración <ArrowRight :size="16" /></RouterLink></article></section>
+ <section class="plans-disclaimer"><ShieldCheck :size="22" /><div><strong>Sin promesas que no podamos cumplir.</strong><p>No ofrecemos monitoreo humano 24/7 ni respuesta policial automática. Los avisos, clips y dispositivos disponibles dependerán de las integraciones que se validen. Los precios se publicarán cuando los costos y alcances estén definidos.</p></div></section>
+ <footer class="public-footer"><RouterLink to="/" class="public-brand"><span class="public-brand-mark"><ShieldCheck :size="19" /></span><span>Tu Guardia <b>Inteligente</b></span></RouterLink><div><RouterLink to="/planes">Planes</RouterLink><RouterLink to="/como-funciona">Cómo funciona</RouterLink><RouterLink to="/privacidad">Privacidad</RouterLink></div><small>Prototipo en desarrollo · Planes y precios sujetos a validación.</small></footer>
+</main>
+</template>
