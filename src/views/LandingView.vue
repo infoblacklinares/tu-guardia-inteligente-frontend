@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ArrowRight, BellRing, CheckCircle2, ChevronRight, Clock3, LockKeyhole, ShieldCheck, Users, Wifi } from 'lucide-vue-next'
+import { ArrowRight, BellRing, CheckCircle2, LockKeyhole, ShieldCheck, Users } from 'lucide-vue-next'
 import { RouterLink } from 'vue-router'
 const steps = [
   { number: '01', title: 'Detectamos un evento', text: 'Sensores y dispositivos compatibles informan situaciones relevantes.' },
