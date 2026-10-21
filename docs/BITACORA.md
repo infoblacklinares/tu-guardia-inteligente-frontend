@@ -86,3 +86,28 @@ Crear repositorio GitHub privado `tu-guardia-inteligente-frontend`, subir el sca
 **Corrección enviada a GitHub:** se eliminaron ambos símbolos sin uso.
 **Commit:** `381f763` — `fix: remove unused dashboard imports and computed value`.
 **Pendiente:** ejecutar `git pull origin main` y `npm run build` en el equipo local. No se afirma que la compilación posterior a esta corrección ya haya pasado.
+
+
+## TGI-FE-007 — 21-10-2026 — Primera iteración comercial y flujo de eventos
+**Objetivo:** avanzar en el frontend público y hacer que la demo explique el servicio sin centrarlo en cámaras 24/7.
+
+**Archivos y cambios enviados a GitHub:**
+- `src/views/LandingView.vue`: nueva página pública con propuesta de valor, beneficios, explicación del producto y CTA a la demo.
+- `src/views/PlansView.vue`: opciones conceptuales Guardia Hogar, Guardia Familia y Guardia Negocio. No se publican precios sin validar costos y alcance.
+- `src/views/HowItWorksView.vue`: recorrido de detección, alerta, confirmación, coordinación y registro.
+- `src/views/PrivacyView.vue`: principios de privacidad y límites del estado actual.
+- `src/router/index.ts`: rutas públicas `/`, `/planes`, `/como-funciona`, `/privacidad`; demo movida a `/app`; títulos y descripciones por ruta y marca `noindex` para la demo.
+- `index.html`: idioma es-CL, metadatos iniciales y Open Graph básico.
+- `src/styles/public.css`: estilo responsive mobile-first, animaciones ligeras y soporte de `prefers-reduced-motion`.
+- `src/views/DashboardView.vue`: detalle de evento en modal, información de hora/dispositivo/estado/video, opción de coordinar apoyo con familia/grupo vecinal/negocio como flujo simulado y acción local para marcar resuelto.
+- `src/styles/main.css`: estilos de modal y acciones accesibles.
+- `public/robots.txt`: reglas básicas de rastreo para páginas públicas y exclusión de `/app`.
+- `docs/FRONTEND_ROADMAP.md`: alcance, entregables, límites de la demo y lista de preparación para producción.
+
+**Límites explícitos:** la demo continúa usando datos ficticios. Confirmación y resolución solo actualizan el estado local; las opciones de compartir no envían notificaciones. No existe login, autorización efectiva, backend, sensores reales, contratación ni envío de formularios. Las opciones de planes son conceptuales y no tienen precios aprobados.
+
+**SEO pendiente:** metadatos dinámicos por Vue Router y OG inicial están añadidos, pero aún falta probar cómo indexa el sitio y evaluar prerenderizado/SSR para HTML comercial inicial. No se creó sitemap XML porque no se ha confirmado el dominio canónico. No afirmar que SEO está terminado.
+
+**Validación pendiente:** el usuario confirmó compilación exitosa antes de esta iteración. No se ha ejecutado `npm run build` después de los nuevos archivos y cambios. Debe ejecutar `git pull origin main`, `npm run build` y revisar rutas en móvil.
+
+**Commits principales:** landing `388f509`, planes `304de0e`, cómo funciona `68565a5`, privacidad `82c035f`, estilos públicos `e1e6c1b`, rutas `8d59153`, metadata `0c4ef2f`, flujo de evento `3f39f2b`, estilos del modal `f1d7a1e`, robots `7fc14dd`, roadmap `71f3d76`.
