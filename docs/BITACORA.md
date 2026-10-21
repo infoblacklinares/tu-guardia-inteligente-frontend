@@ -126,3 +126,17 @@ Crear repositorio GitHub privado `tu-guardia-inteligente-frontend`, subir el sca
 
 
 **Ajuste de secuencia del flujo de evento:** el modal muestra primero “Ya estoy revisando”; la acción “Marcar como resuelta” aparece solo después de confirmar recepción. Commit `7f063b3`. Esto mantiene separados los estados de recepción y resolución.
+
+
+## TGI-FE-008 — 21-10-2026 — Corrección de errores reportados en build
+**Reporte recibido del usuario:** al ejecutar `npm run build`, `vue-tsc -b` reportó 9 errores: un TS18047 en el modal de `DashboardView.vue` por posible null en `selectedEvent`, y ocho TS6133 por iconos importados sin uso en `HowItWorksView.vue` y `LandingView.vue`. El build se detuvo antes de Vite build. Después, el usuario ejecutó `npm run dev`, pero el mensaje pegado mostró el historial de PowerShell y no un inicio de Vite confirmado.
+
+**Correcciones enviadas a GitHub:**
+- `src/views/DashboardView.vue`: se agregaron aserciones no nulas en las expresiones del modal donde se consume el evento seleccionado, manteniendo el modal condicionado a `selectedEvent`.
+- `src/views/HowItWorksView.vue`: se eliminaron los iconos no utilizados `BellRing`, `CheckCircle2`, `ClipboardList`, `Users` y `Wifi`.
+- `src/views/LandingView.vue`: se eliminaron `ChevronRight`, `Clock3` y `Wifi` no utilizados.
+- Commits: Dashboard `540d60e`; HowItWorks `7fb315f`; Landing `0acda97`.
+
+**Estado real:** las correcciones están en la rama remota `main), y los archivos fueron recuperados de GitHub para comprobar que los cambios están presentes. No se pudo ejecutar `npm run build` desde este entorno; el resultado de compilación tras las correcciones sigue pendiente de confirmación del usuario.
+
+**Siguiente paso:** ejecutar en PowerShell desde la carpeta del proyecto `git pull origin main`, luego `npm run build). Si termina sin errores, ejecutar `npm run dev` y abrir la URL local que Vite imprima. No correr `npm install` otra vez salvo que aparezca un error de dependencias.
