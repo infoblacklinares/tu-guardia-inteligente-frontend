@@ -111,3 +111,15 @@ Crear repositorio GitHub privado `tu-guardia-inteligente-frontend`, subir el sca
 **Validación pendiente:** el usuario confirmó compilación exitosa antes de esta iteración. No se ha ejecutado `npm run build` después de los nuevos archivos y cambios. Debe ejecutar `git pull origin main`, `npm run build` y revisar rutas en móvil.
 
 **Commits principales:** landing `388f509`, planes `304de0e`, cómo funciona `68565a5`, privacidad `82c035f`, estilos públicos `e1e6c1b`, rutas `8d59153`, metadata `0c4ef2f`, flujo de evento `3f39f2b`, estilos del modal `f1d7a1e`, robots `7fc14dd`, roadmap `71f3d76`.
+
+
+### Anexo TGI-FE-007A — Formulario de interés y acciones completas de alerta
+**Cambios adicionales enviados tras el registro inicial de TGI-FE-007:**
+- `src/views/InterestView.vue`: formulario visual con validación de nombre, correo y consentimiento; permite seleccionar hogar/familia/negocio/comunidad y muestra confirmación de prueba.
+- `src/router/index.ts`: ruta `/interes` con metadatos propios.
+- `src/views/PlansView.vue`: cada tarjeta dirige al formulario con el plan preseleccionado.
+- `src/styles/public.css`: estilos responsive del formulario.
+- `src/views/DashboardView.vue`: el detalle del evento permite confirmar recepción, marcar resuelto y probar opciones visuales de coordinación; el estado se mantiene solo en la sesión local.
+- Commits adicionales: formulario `617cc3a`, ruta `0c96f27`, enlaces de planes `4189ec4`, estilos de formulario `bc3b77c`, acciones del modal `184e9c4`.
+
+**Limitación del formulario:** no guarda ni transmite los datos. Se muestra un aviso explícito; no utilizar datos reales hasta conectar un endpoint seguro, definir consentimiento/privacidad y probar la recepción. La conversión comercial real sigue pendiente del backend.
