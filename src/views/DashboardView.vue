@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import { Activity, Bell, CheckCircle2, ChevronDown, ChevronRight, CircleAlert, ClipboardList, House, Settings, ShieldCheck, Store, Users, Wifi, WifiOff } from 'lucide-vue-next'
+import { Bell, CheckCircle2, ChevronDown, ChevronRight, CircleAlert, ClipboardList, House, Settings, ShieldCheck, Store, Users, Wifi, WifiOff } from 'lucide-vue-next'
 import type { DashboardSnapshot, EventStatus, SecurityEvent } from '@/types/security'
 import { getDashboardSnapshot } from '@/services/securityService'
 
@@ -20,7 +20,6 @@ onMounted(async () => {
 const activeEvents = computed(() => snapshot.value?.events.filter(e => effectiveStatus(e) !== 'resolved') ?? [])
 const newEvents = computed(() => activeEvents.value.filter(e => effectiveStatus(e) === 'new'))
 const offlineSensors = computed(() => snapshot.value?.sensors.filter(s => s.status === 'offline').length ?? 0)
-const latestEvent = computed(() => snapshot.value?.events[0])
 function effectiveStatus(event: SecurityEvent): EventStatus { return acknowledged.value.includes(event.id) && event.status === 'new' ? 'acknowledged' : event.status }
 function acknowledge(event: SecurityEvent) { if (!acknowledged.value.includes(event.id)) acknowledged.value.push(event.id) }
 function statusLabel(status: string) { return ({ armed:'Activo', disarmed:'Desactivado', offline:'Sin conexión', unknown:'Desconocido', new:'Nueva', acknowledged:'Recibida', resolved:'Resuelta' } as Record<string,string>)[status] ?? status }
