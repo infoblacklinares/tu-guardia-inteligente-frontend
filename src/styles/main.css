@@ -104,3 +104,43 @@
  .details-grid{min-width:0}
  .mobile-nav{min-height:60px}
 }
+
+
+/* v0.4 — guardia inteligente first: alert workflow, no 24/7 camera interface */
+.guard-summary{display:flex;align-items:flex-start;gap:15px;padding:19px;margin-bottom:15px;background:linear-gradient(110deg,#eef7ff,#fff);border-color:#d9e9fb}
+.guard-summary-icon{width:50px;height:50px;display:grid;place-items:center;border-radius:15px;background:#d9f6e7;color:#07834e;flex-shrink:0}
+.guard-summary-copy{min-width:0}.guard-summary-copy .eyebrow{font-size:8px;letter-spacing:1px;color:#55718e;margin-bottom:5px}.guard-summary-copy h2{font-size:17px;line-height:1.25;margin:0 0 6px;color:#132b46}.guard-summary-copy p{font-size:11px;line-height:1.55;margin:0;color:#61748b}
+.alerts-panel{margin-bottom:15px;overflow:hidden}.alerts-panel .section-heading{border-bottom:1px solid #edf1f5}
+.smart-event{display:flex;align-items:flex-start;gap:12px;padding:17px;border-bottom:1px solid #eef1f5}.smart-event:last-child{border-bottom:0}
+.smart-event-icon{width:43px;height:43px;display:grid;place-items:center;border-radius:13px;background:#fff0d2;color:#b65b06;flex-shrink:0}
+.smart-event.event-acknowledged .smart-event-icon,.smart-event.event-resolved .smart-event-icon{background:#dff8e9;color:#14794d}
+.smart-event-body{min-width:0;flex:1}.smart-event-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}.event-kicker{font-size:8px;letter-spacing:.65px;font-weight:800;color:#a45b11}.smart-event-heading h3{font-size:14px;line-height:1.3;margin:4px 0 0;color:#1b2b3e}.smart-event-heading time{font-size:9px;color:#8794a5;white-space:nowrap;margin-top:3px}
+.smart-event-body>p{font-size:11px;line-height:1.5;color:#66758a;margin:7px 0 10px}.smart-event .primary-action{max-width:280px;margin-top:12px;justify-content:flex-start;padding:11px 12px}.smart-event .primary-action svg:last-child{margin-left:auto}
+.empty-state{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;padding:26px 16px;color:#14804d}.empty-state strong{font-size:13px;color:#23354b}.empty-state span{font-size:10px;color:#7d8b9c}
+.sensor-summary{cursor:pointer}.sensor-summary-alert{font-size:9px;color:#a94e11;background:#fff0d2;border-radius:6px;padding:5px 6px;white-space:nowrap}
+.family-count{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;border-radius:13px;background:#f0f4f9;color:#62758d;text-align:center;padding:8px 4px}.family-count strong{font-size:10px;color:#30435a}.family-count small{font-size:8px}
+@media(max-width:680px){
+ .mobile-first-content{padding-bottom:20px}
+ .topbar.mobile-hero{padding-bottom:30px}
+ .topbar .welcome-subtitle{max-width:290px;font-size:13px;line-height:1.35}
+ .home-status-row{margin-top:0}
+ .guard-summary{margin:0 12px 12px;padding:14px;border-radius:17px;gap:11px}
+ .guard-summary-icon{width:43px;height:43px;border-radius:13px}
+ .guard-summary-copy h2{font-size:15px}.guard-summary-copy p{font-size:10px}
+ .alerts-panel{margin-left:12px;margin-right:12px;border:0;border-radius:19px;box-shadow:0 4px 16px #10294a0b}
+ .alerts-panel .section-heading{padding:16px 14px 13px}.alerts-panel .heading-title{gap:8px}.alerts-panel .heading-title h2{font-size:16px}
+ .alerts-panel .section-heading>.text-action{max-width:45%;font-size:10px}
+ .smart-event{padding:14px 12px;gap:10px}.smart-event-icon{width:38px;height:38px;border-radius:11px}
+ .smart-event-heading h3{font-size:13px}.smart-event-heading time{font-size:9px}
+ .smart-event-body>p{font-size:11px}.smart-event .primary-action{max-width:none;width:100%;font-size:11px;padding:12px}
+ .sensor-summary{margin-left:12px;margin-right:12px;padding:13px;gap:9px;border:0;border-radius:16px;box-shadow:0 4px 16px #10294a0b}
+ .sensor-summary-copy strong{font-size:12px}.sensor-summary-copy span{font-size:9px}.sensor-summary-alert{font-size:8px}
+ .history-panel,.family-panel{margin-left:12px;margin-right:12px;border:0;border-radius:18px}
+ .history-panel .panel-heading{padding:15px 13px}.history-panel .panel-heading h2{font-size:15px}
+ .family-panel .section-heading{padding:15px 13px 12px}.family-panel .heading-title h2{font-size:16px}
+ .family-members{grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;padding:4px 8px 14px}
+ .person-avatar{width:43px;height:43px}.family-count{min-width:0}.family-count svg{width:19px}.family-count strong{font-size:9px}
+ .privacy-caption{font-size:8px;line-height:1.4}
+ .disclaimer{margin:14px 16px 0;font-size:8px;line-height:1.45}
+ .mobile-nav{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
