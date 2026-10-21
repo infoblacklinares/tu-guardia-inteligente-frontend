@@ -78,3 +78,11 @@ Crear repositorio GitHub privado `tu-guardia-inteligente-frontend`, subir el sca
 
 **Estado:** cambios enviados a la rama `main`. Compilación y revisión visual posterior al reenfoque aún pendientes en el equipo local.
 **Siguiente paso:** ejecutar `git pull origin main`, `npm run build` y probar la vista móvil. Luego validar con Carlos la viabilidad de sensores, generación de eventos, notificaciones y confirmación/escalamiento antes de conectar backend.
+
+
+## TGI-FE-006 — 21-10-2026 — Corrección TypeScript por símbolos sin uso
+**Error reportado por el usuario tras actualizar el reenfoque de la interfaz:** `vue-tsc -b` detectó dos errores TS6133 en `src/views/DashboardView.vue`: importación `Activity` no utilizada y variable computada `latestEvent` no utilizada.
+
+**Corrección enviada a GitHub:** se eliminaron ambos símbolos sin uso.
+**Commit:** `381f763` — `fix: remove unused dashboard imports and computed value`.
+**Pendiente:** ejecutar `git pull origin main` y `npm run build` en el equipo local. No se afirma que la compilación posterior a esta corrección ya haya pasado.
