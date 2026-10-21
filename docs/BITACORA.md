@@ -123,3 +123,6 @@ Crear repositorio GitHub privado `tu-guardia-inteligente-frontend`, subir el sca
 - Commits adicionales: formulario `617cc3a`, ruta `0c96f27`, enlaces de planes `4189ec4`, estilos de formulario `bc3b77c`, acciones del modal `184e9c4`.
 
 **Limitación del formulario:** no guarda ni transmite los datos. Se muestra un aviso explícito; no utilizar datos reales hasta conectar un endpoint seguro, definir consentimiento/privacidad y probar la recepción. La conversión comercial real sigue pendiente del backend.
+
+
+**Ajuste de secuencia del flujo de evento:** el modal muestra primero “Ya estoy revisando”; la acción “Marcar como resuelta” aparece solo después de confirmar recepción. Commit `7f063b3`. Esto mantiene separados los estados de recepción y resolución.
