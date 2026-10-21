@@ -144,3 +144,32 @@
  .disclaimer{margin:14px 16px 0;font-size:8px;line-height:1.45}
  .mobile-nav{grid-template-columns:repeat(4,minmax(0,1fr))}
 }
+
+
+/* Event details and coordination demo — lightweight motion and clear interaction */
+.smart-event-open{display:block;width:100%;border:0;background:transparent;padding:0;text-align:left;cursor:pointer;border-radius:7px}
+.smart-event-open:focus-visible,.secondary-action:focus-visible,.primary-action:focus-visible,.share-options button:focus-visible{outline:3px solid #80b8ff;outline-offset:3px}
+.smart-event-open:hover .smart-event-heading h3{color:#145ec4}
+.secondary-action{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:9px 12px;border:1px solid #d8e3ef;border-radius:9px;background:#fff;color:#23415f;font-size:10px;font-weight:750;cursor:pointer}
+.secondary-action:hover{background:#f2f7fd}
+.event-modal-backdrop{position:fixed;z-index:60;inset:0;display:flex;align-items:center;justify-content:center;padding:18px;background:#07172bcc;backdrop-filter:blur(5px)}
+.event-modal{width:min(100%,520px);max-height:min(90vh,780px);overflow:auto;background:#fff;border-radius:22px;padding:24px;box-shadow:0 25px 80px #06172b55;animation:modal-enter .22s ease both}
+.event-modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:17px}
+.event-modal-icon{width:46px;height:46px;display:grid;place-items:center;border-radius:14px;background:#fff0d2;color:#a95b06}
+.modal-close{width:34px;height:34px;border:0;border-radius:9px;background:#f0f4f8;color:#455b72;font-size:24px;line-height:1;cursor:pointer}
+.event-modal>.event-kicker{font-size:8px;letter-spacing:.8px}
+.event-modal h2{font-size:23px;line-height:1.2;letter-spacing:-.5px;margin:8px 0;color:#12243a}
+.modal-description{font-size:12px;line-height:1.7;color:#65778c;margin:0 0 18px}
+.event-detail-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.event-detail-list>div{display:grid;gap:6px;background:#f5f8fb;padding:12px;border-radius:10px;min-width:0}
+.event-detail-list span{font-size:9px;color:#78899d}.event-detail-list strong{font-size:11px;color:#243c56;overflow-wrap:anywhere}
+.modal-info-note{display:flex;align-items:flex-start;gap:9px;padding:12px;margin-top:13px;background:#edf6ff;border:1px solid #d9eafb;border-radius:11px;color:#2165a7}
+.modal-info-note svg{flex-shrink:0}.modal-info-note p{font-size:10px;line-height:1.6;margin:0;color:#526e8b}
+.share-title{font-size:13px;margin:19px 0 5px;color:#1c3550}.share-copy{font-size:10px;line-height:1.6;color:#718197;margin:0 0 12px}
+.share-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.share-options button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-height:76px;padding:10px 5px;border:1px solid #dfe8f2;border-radius:11px;background:#fff;color:#31506f;font-size:10px;font-weight:750;cursor:pointer}.share-options button:hover{background:#f0f6ff;border-color:#b9d3f6}
+.share-confirmation{display:flex;align-items:flex-start;gap:8px;padding:11px;margin-top:12px;border-radius:10px;background:#e6f8ed;color:#176b40;font-size:10px;line-height:1.5}.share-confirmation svg{flex-shrink:0}
+.modal-footer{display:flex;justify-content:flex-end;gap:9px;margin-top:20px;padding-top:15px;border-top:1px solid #edf1f5}.modal-footer .primary-action{width:auto;max-width:none;margin:0;padding:10px 12px;font-size:10px}.modal-footer .primary-action svg:last-child{margin-left:0}
+.modal-fade-enter-active,.modal-fade-leave-active{transition:opacity .2s ease}.modal-fade-enter-from,.modal-fade-leave-to{opacity:0}
+@keyframes modal-enter{from{opacity:0;transform:translateY(8px) scale(.99)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:680px){.event-modal-backdrop{align-items:flex-end;padding:0}.event-modal{width:100%;max-height:92vh;border-radius:22px 22px 0 0;padding:21px 17px calc(18px + env(safe-area-inset-bottom))}.event-modal h2{font-size:21px}.share-options button{font-size:9px}.modal-footer .primary-action{flex:1}.modal-footer .secondary-action{min-width:74px}}
+@media(prefers-reduced-motion:reduce){.event-modal,.modal-fade-enter-active,.modal-fade-leave-active{animation:none;transition:none}}
