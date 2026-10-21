@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ArrowRight, BellRing, CheckCircle2, ClipboardList, LockKeyhole, ShieldCheck, Users, Wifi } from 'lucide-vue-next'
+import { ArrowRight, LockKeyhole, ShieldCheck } from 'lucide-vue-next'
 import { RouterLink } from 'vue-router'
 const flow=[
  {n:'01',title:'Se detecta un evento',text:'Un sensor o dispositivo compatible informa una actividad. La app distingue la hora, el dispositivo y el estado reportado.'},
