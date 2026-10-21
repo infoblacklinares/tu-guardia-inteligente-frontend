@@ -62,3 +62,19 @@ Crear repositorio GitHub privado `tu-guardia-inteligente-frontend`, subir el sca
 **Commit:** `48ce63b` — `fix: align mobile section headings with reference layout`.
 
 **Pendiente de verificación:** el usuario debe actualizar su copia local y revisar en el navegador móvil. Esta modificación CSS todavía no ha sido compilada después del cambio. La escena de cámara continúa siendo ilustrativa; no es una imagen real ni un feed de cámara.
+
+
+## TGI-FE-005 — 21-10-2026 — Reenfoque del producto: Guardia Inteligente
+**Decisión de producto reafirmada por el usuario:** el servicio de monitoreo continuo de cámaras 24/7 queda fuera del alcance. El producto principal es el guardia inteligente: detección de eventos relevantes, alertas, confirmación/gestión, historial y avisos a personas autorizadas. Las cámaras no deben dominar la pantalla de inicio ni sugerir vigilancia en directo como servicio central.
+
+**Cambios enviados a GitHub directamente:**
+- `src/views/DashboardView.vue`: se eliminó la cámara como sección principal del inicio y se priorizaron resumen inteligente, alertas pendientes, confirmación de eventos, estado de sensores, historial y personas autorizadas.
+- Navegación móvil cambiada a Inicio, Alertas, Historial y Familia.
+- Texto de demostración deja explícito que no hay monitoreo 24/7 ni dispositivos reales conectados.
+- `src/styles/main.css`: estilos mobile-first para resumen y tarjetas de alertas.
+- Commits: `c8506a3` (vista) y `b371539` (estilos).
+
+**Límites que se mantienen:** los datos son simulados; no hay backend/dispositivos reales conectados; no se promete respuesta automática de emergencias ni monitoreo humano permanente. Los videos del hogar son privados por defecto; cualquier compartición debe ser explícita y controlada. El soporte de clips dependerá de las capacidades reales del equipo/API y no es requisito para presentar la idea central.
+
+**Estado:** cambios enviados a la rama `main`. Compilación y revisión visual posterior al reenfoque aún pendientes en el equipo local.
+**Siguiente paso:** ejecutar `git pull origin main`, `npm run build` y probar la vista móvil. Luego validar con Carlos la viabilidad de sensores, generación de eventos, notificaciones y confirmación/escalamiento antes de conectar backend.
