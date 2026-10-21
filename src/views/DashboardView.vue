@@ -27,6 +27,7 @@ function effectiveStatus(event: SecurityEvent): EventStatus { if (resolved.value
 function acknowledge(event: SecurityEvent) { if (!acknowledged.value.includes(event.id)) acknowledged.value.push(event.id) }
 function resolveEvent(event: SecurityEvent) { if (!resolved.value.includes(event.id)) resolved.value.push(event.id); selectedEvent.value = null }
 function shareDemo() { shareNotice.value = true }
+function openEvent(event: SecurityEvent) { selectedEvent.value = event; shareNotice.value = false }
 function statusLabel(status: string) { return ({ armed:'Activo', disarmed:'Desactivado', offline:'Sin conexión', unknown:'Desconocido', new:'Nueva', acknowledged:'Recibida', resolved:'Resuelta' } as Record<string,string>)[status] ?? status }
 function timeLabel(value: string) { return new Intl.DateTimeFormat('es-CL',{hour:'2-digit',minute:'2-digit'}).format(new Date(value)) }
 function selectArea(area: 'home' | 'business' | 'community') { selectedArea.value = area; mobileSection.value = 'home' }
@@ -75,7 +76,7 @@ function selectArea(area: 'home' | 'business' | 'community') { selectedArea.valu
           <div class="smart-event-body">
             <div class="smart-event-heading"><div><span class="event-kicker">{{effectiveStatus(event)==='new'?'REQUIERE ATENCIÓN':'ESTADO DEL EVENTO'}}</span><h3>{{event.title}}</h3></div><time>{{timeLabel(event.occurredAt)}}</time></div>
             <p>{{event.description}}</p>
-            <button class="secondary-action" @click="selectedEvent=event">Ver detalles del evento</button>
+            <button class="secondary-action" @click="openEvent(event)">Ver detalles del evento</button>
             <div class="event-meta"><span class="status-chip" :class="effectiveStatus(event)">{{statusLabel(effectiveStatus(event))}}</span><span class="clip-label muted">{{event.clipAvailable ? 'Referencia de clip demo' : 'Sin vídeo asociado'}}</span></div>
             <button v-if="event.status==='new' && !acknowledged.includes(event.id)" class="primary-action" @click="acknowledge(event)"><CheckCircle2 :size="17" /> Marcar como recibida <ChevronRight :size="18" /></button>
             <div v-else class="acknowledged-note"><CheckCircle2 :size="16" /> Evento recibido en esta sesión de demostración</div>
@@ -112,7 +113,7 @@ function selectArea(area: 'home' | 'business' | 'community') { selectedArea.valu
         <h3 class="share-title">Coordinar apoyo</h3><p class="share-copy">En el servicio final podrás avisar a personas autorizadas. Prueba el flujo visual; no se enviará ninguna notificación.</p>
         <div class="share-options"><button @click="shareDemo"><Users :size="17" /> Familia</button><button @click="shareDemo"><House :size="17" /> Grupo vecinal</button><button @click="shareDemo"><Store :size="17" /> Negocio</button></div>
         <div v-if="shareNotice" class="share-confirmation"><CheckCircle2 :size="17" /> Acción simulada. No se ha enviado una notificación real.</div>
-        <div class="modal-footer"><button class="secondary-action" @click="selectedEvent=null">Cerrar</button><button v-if="effectiveStatus(selectedEvent)!=='resolved'" class="primary-action" @click="resolveEvent(selectedEvent)"><CheckCircle2 :size="17" /> Marcar como resuelta</button></div>
+        <div class="modal-footer"><button class="secondary-action" @click="selectedEvent=null">Cerrar</button><button v-if="effectiveStatus(selectedEvent)==='new'" class="primary-action" @click="acknowledge(selectedEvent)"><CheckCircle2 :size="17" /> Ya estoy revisando</button><button v-if="effectiveStatus(selectedEvent)!=='resolved'" class="primary-action" @click="resolveEvent(selectedEvent)"><CheckCircle2 :size="17" /> Marcar como resuelta</button></div>
       </section>
     </div>
   </Transition>
