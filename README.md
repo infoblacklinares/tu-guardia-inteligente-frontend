@@ -5,6 +5,7 @@
 ## Experiencias
 - Sitio público: `/`
 - Planes conceptuales: `/planes`
+- Formulario de interés de demostración: `/interes`
 - Cómo funciona: `/como-funciona`
 - Principios de privacidad: `/privacidad`
 - Aplicación de demostración: `/app`
@@ -27,7 +28,7 @@ npm run build
 ```
 
 ## Estado funcional real
-La web pública explica el producto y presenta opciones conceptuales de planes. La demo permite explorar eventos ficticios, abrir sus detalles, confirmar recepción, marcar un evento como resuelto y probar visualmente opciones de coordinación. Estas acciones no envían notificaciones ni persisten en un servidor.
+La web pública explica el producto y presenta opciones conceptuales de planes, y tiene un formulario de interés validado visualmente. La demo permite explorar eventos ficticios, abrir sus detalles, confirmar recepción, marcar un evento como resuelto y probar visualmente opciones de coordinación. Estas acciones no envían notificaciones ni persisten en un servidor.
 
 No hay autenticación, roles efectivos, backend, dispositivos reales, compra ni formulario conectado. Los precios y alcances de planes están pendientes de validación. No se ofrece monitoreo humano 24/7 ni respuesta policial automática.
 
