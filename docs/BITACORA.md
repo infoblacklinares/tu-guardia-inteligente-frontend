@@ -52,3 +52,13 @@ Crear repositorio GitHub privado `tu-guardia-inteligente-frontend`, subir el sca
 **Estado real tras estos cambios:** los archivos están enviados a la rama `main` de GitHub. Todavía no se ha ejecutado una compilación después de integrar el nuevo diseño; no afirmar que el rediseño v0.3 compila hasta que el usuario lo pruebe localmente. La escena de cámara es una ilustración CSS y está rotulada como demostración; no representa una cámara conectada. No hay backend ni dispositivos reales conectados.
 
 **Siguiente paso:** en el equipo local, ejecutar `git pull origin main` y `npm run build`. Corregir cualquier error antes de desplegar. Revisar las 7 vulnerabilidades por separado, sin usar `npm audit fix --force` sin analizar el impacto.
+
+
+## TGI-FE-004 — 21-10-2026 — Ajuste visual móvil v0.3.1
+**Observación del usuario:** la vista móvil seguía alejándose de la referencia; en la tarjeta Cámaras el título, el enlace “Ver todas” y el chevrón aparecían apilados en varias líneas.
+
+**Corrección enviada a GitHub:** se añadieron reglas responsive explícitas para alinear en una sola fila el encabezado de sección, el título y la acción; se corrigieron alineación de cabecera de alertas, proporciones de cámara y presentación de los paneles en móvil.
+
+**Commit:** `48ce63b` — `fix: align mobile section headings with reference layout`.
+
+**Pendiente de verificación:** el usuario debe actualizar su copia local y revisar en el navegador móvil. Esta modificación CSS todavía no ha sido compilada después del cambio. La escena de cámara continúa siendo ilustrativa; no es una imagen real ni un feed de cámara.
